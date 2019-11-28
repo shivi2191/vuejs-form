@@ -1,12 +1,33 @@
 <template>
-  <div class="container">
+
     <label class="switch switch-left-right">
-      <input class="switch-input" type="checkbox" />
-      <span class="switch-label" data-on="On" data-off="Off"></span>
-      <span class="switch-handle"></span>
+      <input class="switch-input" type="checkbox" v-model.lazy="switchState"/>
+      <span class="switch-label" data-on="Yes" data-off="No" @click.prevent="onSwitchToggle"></span>
+      <span class="switch-handle" ></span>
     </label>
-  </div>
+  
 </template>
+<script>
+export default {
+	props: ['id'],
+	data() {
+		return {
+			switchState : false
+		}
+	},
+	methods: {
+		onSwitchToggle(oEvent){
+			if(this.switchState){
+				this.switchState = false;
+			}else{
+				this.switchState = true;
+			}
+
+			this.$emit('switchStatus', this.switchState);
+		}
+	}
+}
+</script>
 <style scoped>
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css");
 
@@ -52,7 +73,6 @@
 .switch {
 	position: relative;
 	display: block;
-	vertical-align: top;
 	width: 100px;
 	height: 30px;
 	padding: 3px;

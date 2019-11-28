@@ -1,30 +1,33 @@
 <template>
     <div class="container">
-        <Details></Details>
+        <Details @submit-clicked="detectSubmit" @form-data="sendDataToCollection"></Details>
         <hr>
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Your Data</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>Full Name: </p>
-                        <p>Mail: </p>
-                        <p>Password: </p>
-                        <p>Store in Database?: </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <CollectedDetails :formdetails='formData' v-if="submitStatus===true"></CollectedDetails>
     </div>
 </template>
 
 <script>
     import Details from './components/Form.vue'
+    import CollectedDetails from './components/CollectedDetails.vue'
     export default {
         components: {
-            Details: Details
+            Details: Details,
+            CollectedDetails: CollectedDetails
+        },
+        data(){
+            return {
+                submitStatus: false,
+                formData: {}
+            }
+        },
+        methods: {
+            detectSubmit(bValue){
+               this.submitStatus = bValue;
+            },
+
+            sendDataToCollection(obj){
+                this.formData = obj;
+            }
         }
     }
 </script>
