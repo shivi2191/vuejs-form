@@ -3,13 +3,13 @@
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4>Your Data</h4>
+                        <h4><b>Your Data</b></h4>
                     </div>
                     <div class="panel-body">
-                        <p>Full Name: {{formdetails.firstName}} {{formdetails.lastName}}</p>
-                        <p>Mail:  {{formdetails.email}}</p>
-                        <p>Password: {{formdetails.password}} </p>
-                        <p>Store in Database: <b>{{formdetails.switchState}}</b></p>
+                        <p><b>Name:</b> {{formdetails.fullname}}</p>
+                        <p><b>Mail:</b>  {{formdetails.email}}</p>
+                        <p><b>Password:</b> {{formdetails.password}} </p>
+                        <p><b>Store in Database:</b> <b>{{formdetails.switchState}}</b></p>
                     </div>
                 </div>
             </div>

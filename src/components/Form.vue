@@ -7,14 +7,7 @@
           <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <h1>Fill your details</h1>
             <hr />
-            <div class="form-group">
-              <label for="idFirstName">First Name</label>
-              <input type="text" name="First Name" class="form-control" v-model.lazy="UserDetails.firstName" id="idFirstName" />
-            </div>
-            <div class="form-group">
-              <label for="idLastName">Last Name</label>
-              <input type="text" name="Last Name" id="idLastName" v-model.lazy="UserDetails.lastName" class="form-control" />
-            </div>
+            <FullName v-model="UserDetails.fullname" @completeName="getCompleteName"></FullName>
             <div class="form-group">
               <label for="idEmail">Email</label>
               <input type="email" name="Email" id="idEmail" v-model.lazy="UserDetails.email" class="form-control" />
@@ -43,12 +36,12 @@
 
 <script>
 import SwitchBtn from "./customcontrols/Switch.vue";
+import FullName from "./customcontrols/Fullname.vue";
 export default {
   data() {
     return {
       UserDetails: {
-        firstName: "",
-        lastName: "",
+        fullname: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -60,7 +53,8 @@ export default {
     };
   },
   components: {
-    SwitchBtn: SwitchBtn
+    SwitchBtn: SwitchBtn,
+    FullName: FullName
   },
   methods: {
     onSubmitClick(){
@@ -76,6 +70,9 @@ export default {
       }else{
         this.UserDetails.switchState = 'No'
       };
+    },
+    getCompleteName(value){
+      this.UserDetails.fullname = value;
     }
   }
 };
